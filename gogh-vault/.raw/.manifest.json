@@ -1,0 +1,151 @@
+{
+  "scaffold_history": [
+    {
+      "client": "gogh-vault",
+      "client_name": "Zeromile Agency",
+      "owner": "Dishant",
+      "created": "2026-07-16"
+    }
+  ],
+  "sources": [
+    {
+      "path": ".raw/skills/anthropic-frontend-design/SKILL.md",
+      "sha256": "20000d2fec26d2e5b196237d19ce996dc4b484434c075139101bb12f00752fc5",
+      "retrieved": "2026-07-07",
+      "source_type": "official"
+    },
+    {
+      "path": ".raw/skills/anthropic-frontend-design/blog-post.md",
+      "sha256": "3e7376681e5e9ba6d8eed5e6444c6ec783a1afdda22a8e5758e222fd93e8e342",
+      "retrieved": "2026-07-07",
+      "source_type": "official"
+    },
+    {
+      "path": ".raw/skills/impeccable/MISSING-CHANGELOG.md",
+      "sha256": "42f45529bf4c425146e5c79c9b00d7029abad82c9d7ebd0ee7961bef6ebf1a8b",
+      "retrieved": "2026-07-07",
+      "source_type": "supporting"
+    },
+    {
+      "path": ".raw/skills/impeccable/README.md",
+      "sha256": "1a918c7e058df63bcf6d6d1fe903e9ac5d9852c69fe4b51066ed78e4c94066fa",
+      "retrieved": "2026-07-07",
+      "source_type": "primary"
+    },
+    {
+      "path": ".raw/skills/impeccable/SKILL.md",
+      "sha256": "1a1421f3d9b6c435ed0625613bed826154c3ecb20f1b560e1f57dbccbe91fb25",
+      "retrieved": "2026-07-07",
+      "source_type": "primary"
+    },
+    {
+      "path": ".raw/skills/make-interfaces-feel-better/README.md",
+      "sha256": "6b12173ff5b6386bc6f98daa58771fba99360dcd2c312de653b28f70bf7fbf6d",
+      "retrieved": "2026-07-07",
+      "source_type": "primary"
+    },
+    {
+      "path": ".raw/skills/make-interfaces-feel-better/SKILL.md",
+      "sha256": "5d9a55f335288b15a5327dc0210ac9bdac6698117ea3b5b6b091133badb3ee34",
+      "retrieved": "2026-07-07",
+      "source_type": "primary"
+    },
+    {
+      "path": ".raw/skills/make-interfaces-feel-better/animations.md",
+      "sha256": "436f799a94492438acb767596c5587ffe20cb407f2b98135a1b80c68fd4ef081",
+      "retrieved": "2026-07-07",
+      "source_type": "primary"
+    },
+    {
+      "path": ".raw/skills/make-interfaces-feel-better/performance.md",
+      "sha256": "001d8e529b39156df98fcaad88bd0273799ebeaa39acfdeda1cf422d44c724d4",
+      "retrieved": "2026-07-07",
+      "source_type": "primary"
+    },
+    {
+      "path": ".raw/skills/make-interfaces-feel-better/surfaces.md",
+      "sha256": "6ec24fd60d6c157571fdbc714bc53b1afeb25ca4bc2f397a4a30f03ac5dfdede",
+      "retrieved": "2026-07-07",
+      "source_type": "primary"
+    },
+    {
+      "path": ".raw/skills/make-interfaces-feel-better/typography.md",
+      "sha256": "3c7b2909a9c73a1fd473a943d670faaa65a23223c0afe779131629f2baa70096",
+      "retrieved": "2026-07-07",
+      "source_type": "primary"
+    },
+    {
+      "path": ".raw/skills/taste-skill-v2/CHANGELOG.md",
+      "sha256": "e16cc3ea5ebd9c894d31e0b5fecfb15a76a1c33a74930986ba35f552bdb94fde",
+      "retrieved": "2026-07-07",
+      "source_type": "primary"
+    },
+    {
+      "path": ".raw/skills/taste-skill-v2/SKILL.md",
+      "sha256": "29fcbf72652a37dd3731b49f3a7bffdc4fc82610d79b99ae446cc6db4839070d",
+      "retrieved": "2026-07-07",
+      "source_type": "primary"
+    },
+    {
+      "path": ".raw/skills/ui-ux-pro-max/README.md",
+      "sha256": "e686a76db226fdfbcaadff57796e00d64236b34cbcec4e73231d3f6872c68c62",
+      "retrieved": "2026-07-07",
+      "source_type": "primary"
+    },
+    {
+      "path": ".raw/skills/ui-ux-pro-max/SKILL.md",
+      "sha256": "c84333a07d8e0f0a71ab29bc8218b7468cdef2656979d0974f4d305ef086dfc7",
+      "retrieved": "2026-07-07",
+      "source_type": "primary"
+    },
+    {
+      "path": ".raw/skills/ui-ux-pro-max/tree.txt",
+      "sha256": "74fe1f279eb83dda1b13c14d8b57a5cbf3d4083fc5f67b91c052c6b8f10635e8",
+      "retrieved": "2026-07-07",
+      "source_type": "supporting"
+    },
+    {
+      "path": ".raw/skills/vercel-web-design-guidelines/SKILL.md",
+      "sha256": "d8151452e4519a1a7cd7bb74c63a0f6584a2b5f552641c26dc8f45f7ee09aa06",
+      "retrieved": "2026-07-07",
+      "source_type": "official"
+    },
+    {
+      "path": ".raw/skills/vercel-web-design-guidelines/command.md",
+      "sha256": "d993ec1ed0d0e5163df965aeb42db16b858e65c6b94d64cd55407f5614f3fde5",
+      "retrieved": "2026-07-07",
+      "source_type": "official"
+    },
+    {
+      "path": ".raw/skills/ui-ux-pro-max/styles.csv",
+      "sha256": "b3fabd4e47a91d330411e32c6c68748dc0ab5f67b02404e0c0d26eb517d61814",
+      "retrieved": "2026-07-07",
+      "source_type": "primary"
+    },
+    {
+      "path": ".raw/skills/ui-ux-pro-max/styles-PROVENANCE.md",
+      "sha256": "21b33e46399ca489ef021a28405f79a90cd35c5867be2bc5a58e542f11ba8eb7",
+      "retrieved": "2026-07-07",
+      "source_type": "primary"
+    },
+    {
+      "path": ".raw/sources/whatsapp-click-to-chat-format.md",
+      "sha256": "c9e7489d5eeeddf88d16576178c5ac63b46ccb04aa70d71eaadd1c5d4d87a9fd",
+      "retrieved": "2026-07-17",
+      "source_type": "manual"
+    },
+    {
+      "path": ".raw/sources/nng-trustworthy-design.md",
+      "sha256": "43a3821646952fc7ce18559e5c706afd19ad7bea007e6b370e49b6b765a7fe4c",
+      "retrieved": "2026-07-17",
+      "source_type": "manual"
+    },
+    {
+      "path": ".raw/sources/mobile-form-design-best-practices.md",
+      "sha256": "22be12b90048f5640ecd4a63bdae8a8f30c35c3128bdda7188d3a3bfb7d6bba8",
+      "retrieved": "2026-07-17",
+      "source_type": "manual"
+    }
+  ],
+  "brain_schema": "gogh.v1"
+}

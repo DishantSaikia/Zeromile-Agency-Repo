@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+:root {
+  /* Surfaces — base -> elevated -> floating. Warm-neutral, not cool-blue,
+     so the canvas reads as white/paper rather than a blue tint. */
+  --color-bg: #ffffff;
+  --color-surface: #f8f6f2;
+  --color-surface-2: #f0ece3;
+
+  /* Ink (text) */
+  --color-ink: #0b1b33;
+  --color-ink-muted: #5b6b82;
+  /* ~4.86:1 on white - was #8a96a8 (~3.0:1), which failed the 4.5:1 body
+     text floor on every price-unit label, placeholder caption, and
+     footer line sitewide. */
+  --color-ink-faint: #64728a;
+
+  /* Brand — navy is the ink/accent color sampled from the Zeromile logo,
+     not a background fill (see Aesthetic Direction Commitment + Color
+     Theme Rework decisions). */
+  --color-navy: #123a66;
+  --color-navy-deep: #0a2647;
+
+  /* Complementary warm accent, deliberately invented (not sampled from
+     the logo - the logo itself is navy/blue/white with a pale cream
+     sunset halo, nothing this saturated). Sits opposite navy on the
+     color wheel so the palette isn't just navy + WhatsApp green. Kept
+     under the --color-brand-blue token name so every existing usage
+     (text-brand-blue, bg-brand-blue-soft, etc.) picks up the hue without
+     a site-wide rename. */
+  --color-brand-blue: #9a3412;
+  --color-brand-blue-soft: #fdece0;
+
+  /* Fixed by agency-design-system constraint 1 — WhatsApp actions only */
+  --color-whatsapp: #25d366;
+  --color-whatsapp-dark: #1ebd5a;
+  /* Text/icon color for content sitting on the WhatsApp green fill. Fixed
+     dark in BOTH light and dark mode (not aliased to --color-ink) because
+     the green background itself never changes between themes - a
+     theme-aware text color would flip light in dark mode and reintroduce
+     the exact 1.98:1 contrast failure this token exists to avoid. */
+  --color-on-whatsapp: #0b1b33;
+
+  /* Sparse trust accent — ratings/badges only, never decorative fills */
+  --color-gold: #c99a3e;
+
+  --color-danger: #dc2626;
+  --color-danger-soft: #fdecec;
+
+  --color-hairline: rgba(11, 27, 51, 0.08);
+  --color-hairline-strong: rgba(11, 27, 51, 0.14);
+
+  /* Motion — confident, decelerating. No bounce/spring anywhere. */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 0.18s;
+  --dur-base: 0.45s;
+  --dur-slow: 0.7s;
+
+  /* One concentric radius relationship, used everywhere a container needs
+     rounding: outer = inner + padding. Loose text/nav elements (pills,
+     underline CTAs) intentionally sit outside this scale. */
+  --radius-inner: 12px;
+  --radius-outer: 20px;
+
+  /* make-interfaces-feel-better's three-layer shadow recipe: a hairline,
+     a close contact shadow, a soft ambient one. Replaces ad hoc shadow
+     values everywhere. */
+  --shadow-card: 0 0 0 1px var(--color-hairline), 0 1px 2px -1px rgba(11, 27, 51, 0.06), 0 6px 16px -4px rgba(11, 27, 51, 0.12);
+  --shadow-card-hover: 0 0 0 1px var(--color-hairline-strong), 0 2px 4px -1px rgba(11, 27, 51, 0.08), 0 16px 32px -8px rgba(11, 27, 51, 0.18);
+}
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-2: var(--color-surface-2);
+  --color-ink: var(--color-ink);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-ink-faint: var(--color-ink-faint);
+  --color-navy: var(--color-navy);
+  --color-navy-deep: var(--color-navy-deep);
+  --color-brand-blue: var(--color-brand-blue);
+  --color-brand-blue-soft: var(--color-brand-blue-soft);
+  --color-whatsapp: var(--color-whatsapp);
+  --color-whatsapp-dark: var(--color-whatsapp-dark);
+  --color-on-whatsapp: var(--color-on-whatsapp);
+  --color-gold: var(--color-gold);
+  --color-danger: var(--color-danger);
+  --color-danger-soft: var(--color-danger-soft);
+  --color-hairline: var(--color-hairline);
+  --color-hairline-strong: var(--color-hairline-strong);
+
+  --font-heading: var(--font-lexend);
+  --font-body: var(--font-source-sans);
+  --font-serif: var(--font-source-serif);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--color-brand-blue);
+  color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Prevents stat/price digits from jittering in width as they change. */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* mifb's inset image outline — a cheap, real "feels expensive" detail. */
+.image-outline {
+  position: relative;
+}
+.image-outline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  outline: 1px solid rgba(11, 27, 51, 0.1);
+  outline-offset: -1px;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Subtle print-grain texture — a cheap, tactile "premium" detail. Inline SVG
+   turbulence, no image request. Kept faint enough to never touch contrast. */
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Infinite marquee band. Pure CSS so it never depends on JS to render, and
+   the global prefers-reduced-motion rule above already freezes it. */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 28s linear infinite;
+}

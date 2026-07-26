@@ -1,0 +1,68 @@
+{
+  "schema": "brainstein/source-ledger@2",
+  "version": 1,
+  "generated_at": "2026-07-17",
+  "status": "researched",
+  "domain": "Zeromile Agency booking site: WhatsApp click-to-chat correctness, trustworthiness signals for a transaction-adjacent rental/stays site, and mobile enquiry-form UX.",
+  "refresh_cadence": "on-changelog for WhatsApp Help Center click-to-chat docs and Meta developer docs; yearly for NN/g trustworthiness research and Smashing Magazine mobile form guidance",
+  "rules": {
+    "researched_requires": [
+      "at least one official/primary source for lower-risk domains",
+      "retrieved dates, refresh_due dates, source_type, confidence, and claim coverage",
+      "no placeholder/example URLs"
+    ],
+    "accepted_primary_types": [
+      "official",
+      "primary",
+      "vendor",
+      "practitioner"
+    ]
+  },
+  "sources": [
+    {
+      "id": "whatsapp-click-to-chat-format",
+      "title": "WhatsApp Help Center - How to use click to chat",
+      "url": "https://faq.whatsapp.com/5913398998672934/",
+      "source_type": "official",
+      "retrieved": "2026-07-17",
+      "refresh_due": "2027-07-17",
+      "confidence": "medium",
+      "confidence_note": "Full page body did not render through the available fetch tool (returned truncated); content corroborated via search-engine snippet extraction and a secondary Meta for Developers page rather than a full primary-page capture.",
+      "claims": [
+        "The click-to-chat link format is https://wa.me/<number>",
+        "<number> must be full international format: country code + local number, no leading +, no leading zeros, no spaces/dashes/brackets",
+        "Meta's newer short-link system (wa.me/message/<code>) embeds the pre-filled message server-side and can mask the phone number, as an alternative to the classic wa.me/<number>?text=<message> pattern"
+      ]
+    },
+    {
+      "id": "nng-trustworthy-design",
+      "title": "Nielsen Norman Group - Trustworthy Design: 4 Credibility Factors",
+      "url": "https://www.nngroup.com/articles/trustworthy-design/",
+      "source_type": "official",
+      "retrieved": "2026-07-17",
+      "refresh_due": "2027-07-17",
+      "confidence": "high",
+      "claims": [
+        "Four credibility factors: design quality, upfront disclosure, comprehensive/correct/current content, connection to the rest of the web",
+        "Login/registration walls placed before any value is shown damage trust",
+        "For service-booking sites, showing real process photos (not just idealized end results) helps users assess who they are dealing with",
+        "Users trust independent/external validation (reviews, third-party mentions) more than company-sponsored content"
+      ]
+    },
+    {
+      "id": "smashing-mobile-form-design",
+      "title": "Smashing Magazine - Best Practices For Mobile Form Design",
+      "url": "https://www.smashingmagazine.com/2018/08/best-practices-for-mobile-form-design/",
+      "source_type": "practitioner",
+      "retrieved": "2026-07-17",
+      "refresh_due": "2027-07-17",
+      "confidence": "medium",
+      "claims": [
+        "Use semantic input types (tel, email, date, number, datetime, month) to trigger correct mobile keyboards",
+        "Minimum touch target 48x48dp with 8dp minimum spacing between adjacent interactive elements",
+        "Single-column forms complete 15.4 seconds faster than multi-column; only pair short logically-related fields on one row",
+        "Inline validation (on blur or ~500-1000ms pause) outperforms submit-only validation: 22% higher success rate, 42% faster completion, 47% fewer eye fixations"
+      ]
+    }
+  ]
+}
