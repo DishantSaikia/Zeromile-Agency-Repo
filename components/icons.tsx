@@ -197,17 +197,6 @@ export function SuvIcon(props: IconProps) {
   );
 }
 
-export function LuxuryCarIcon(props: IconProps) {
-  return (
-    <svg {...base} {...props}>
-      <path d="M2.5 15.5V12l1.3-1.8c.7-.9 1.7-1.5 2.9-1.6l2.8-.3 2-1.6a2 2 0 0 1 1.3-.5h2.7c.7 0 1.3.4 1.6 1l1.4 2.4.7 2" />
-      <path d="M2 15.5h20v1.5a1 1 0 0 1-1 1h-1.3a1 1 0 0 1-1-1v-.7H5.3v.7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1.5Z" />
-      <circle cx="6.5" cy="15.5" r="1.5" />
-      <circle cx="17.5" cy="15.5" r="1.5" />
-    </svg>
-  );
-}
-
 export function MiniTruckIcon(props: IconProps) {
   return (
     <svg {...base} {...props}>

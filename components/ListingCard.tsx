@@ -45,6 +45,7 @@ export function ListingCard({
             alt={image.alt}
             fill
             priority={priority}
+            unoptimized
             sizes="(min-width: 1024px) 380px, 92vw"
             className="object-cover transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out)] group-hover:scale-105"
           />
@@ -56,11 +57,11 @@ export function ListingCard({
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h3 className="font-heading text-lg font-semibold tracking-tight text-ink">{title}</h3>
+            <h3 className="font-heading text-lg tracking-tight text-ink">{title}</h3>
             {subtitle && <p className="mt-0.5 text-sm text-ink-muted">{subtitle}</p>}
           </div>
           <p className="shrink-0 text-right leading-tight">
-            <span className="tabular-nums block font-heading text-lg font-semibold text-navy">
+            <span className="tabular-nums block font-heading text-lg text-navy">
               {price}
             </span>
             <span className="block text-xs text-ink-faint">{priceUnit}</span>

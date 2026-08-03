@@ -1,6 +1,6 @@
 const ITEMS = [
-  "Private Car Rental",
-  "Commercial Fleet",
+  "Self Drive",
+  "Commercial Vehicles",
   "Stays",
   "Zero Mile",
   "Booked on WhatsApp",
@@ -18,10 +18,10 @@ export function Marquee() {
         <div key={copy} className="flex shrink-0 items-center" aria-hidden={copy === 1}>
           {ITEMS.map((item) => (
             <span key={item} className="flex items-center whitespace-nowrap">
-              <span className="font-heading text-2xl font-semibold tracking-tight text-ink/90 lg:text-3xl">
+              <span className="text-xs font-semibold uppercase tracking-[0.25em] text-ink-muted">
                 {item}
               </span>
-              <span className="mx-8 text-2xl text-brand-blue lg:text-3xl" aria-hidden="true">
+              <span className="mx-6 text-xs text-navy" aria-hidden="true">
                 &bull;
               </span>
             </span>
@@ -33,8 +33,7 @@ export function Marquee() {
 
   return (
     <div
-      className="overflow-hidden border-y border-hairline py-6"
-      role="presentation"
+      className="overflow-hidden border-y border-hairline py-4"
       style={{
         maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
         WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",

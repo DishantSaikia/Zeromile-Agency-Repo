@@ -1,64 +1,39 @@
-import { StarIcon } from "./icons";
+import { RevealGrid } from "./RevealGrid";
+import type { Testimonial } from "@/lib/data/types";
 
-type Testimonial = {
-  quote: string;
-  name: string;
-  context: string;
-  rating: number;
+type Props = {
+  testimonials: Testimonial[];
 };
 
-const TESTIMONIALS: Testimonial[] = [
-  {
-    quote:
-      "Booked a self-drive SUV for a family trip with a single WhatsApp message. No forms, no waiting on hold - just a quick chat and the car was ready.",
-    name: "Ankita R.",
-    context: "Private car rental, Guwahati",
-    rating: 5,
-  },
-  {
-    quote:
-      "We've used their tempo fleet for three months of inter-city deliveries. GST invoicing was sorted from day one and the vehicles are always on time.",
-    name: "Debojit Deals Pvt. Ltd.",
-    context: "Commercial rental, ongoing contract",
-    rating: 5,
-  },
-  {
-    quote:
-      "The Lakeview Bungalow was exactly as described. Check-in was simple and the team was reachable the whole stay in case we needed anything.",
-    name: "Priya M.",
-    context: "Stays, Lakeview Bungalow",
-    rating: 4,
-  },
-];
+/**
+ * Signed register lines, not a card+shadow+star-rating grid - that formula
+ * is the single most templated "trust section" pattern there is, and
+ * ServiceCard already rejected the same card formula elsewhere on this page.
+ * Each entry reads like a witnessed line in Zeromile's own ledger: a quote,
+ * then a signature (name, context, rating) rather than a star row up top.
+ */
+export function Testimonials({ testimonials }: Props) {
+  if (testimonials.length === 0) return null;
 
-export function Testimonials() {
   return (
-    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-      {TESTIMONIALS.map((t) => (
-        <figure
-          key={t.name}
-          className="flex flex-col rounded-[var(--radius-outer)] bg-surface p-6 shadow-[var(--shadow-card)]"
-        >
-          <div className="flex items-center gap-1" aria-hidden="true">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <StarIcon
-                key={i}
-                className={`h-4 w-4 ${i < t.rating ? "text-gold" : "text-hairline-strong"}`}
-              />
-            ))}
+    <RevealGrid className="divide-y divide-hairline border-y border-hairline">
+      {testimonials.map((t, i) => (
+        <figure key={t.id} className="grid gap-3 py-8 lg:grid-cols-[5rem_1fr] lg:gap-10 lg:py-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy lg:pt-1">
+            N&deg; {String(i + 1).padStart(2, "0")}
+          </p>
+          <div>
+            <blockquote className="font-serif text-lg italic leading-relaxed text-ink lg:text-xl">
+              &ldquo;{t.quote}&rdquo;
+            </blockquote>
+            <figcaption className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-sm">
+              <span className="font-semibold text-ink">{t.name}</span>
+              <span className="text-ink-muted">{t.context}</span>
+              <span className="text-ink-faint">&middot; {t.rating}/5</span>
+            </figcaption>
           </div>
-          <span className="sr-only">{t.rating} out of 5 stars</span>
-
-          <blockquote className="mt-4 flex-1 font-serif text-[1.0625rem] italic leading-relaxed text-ink">
-            &ldquo;{t.quote}&rdquo;
-          </blockquote>
-
-          <figcaption className="mt-5 border-t border-hairline pt-4">
-            <p className="text-sm font-semibold text-ink">{t.name}</p>
-            <p className="text-xs text-ink-muted">{t.context}</p>
-          </figcaption>
         </figure>
       ))}
-    </div>
+    </RevealGrid>
   );
 }

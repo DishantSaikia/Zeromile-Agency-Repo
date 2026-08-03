@@ -8,9 +8,15 @@ const csp = [
   // debugging features; production React never calls eval().
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data:",
+  // *.supabase.co - listing photos are served from Supabase Storage's
+  // public bucket URL.
+  "img-src 'self' data: https://*.supabase.co",
   "font-src 'self' data:",
-  `connect-src 'self'${isDev ? " ws:" : ""}`,
+  // *.supabase.co - the admin panel's browser client talks to Supabase
+  // Auth/Storage/Postgres directly from the client.
+  `connect-src 'self' https://*.supabase.co${isDev ? " ws:" : ""}`,
+  // The contact page embeds a Google Maps location widget in an iframe.
+  "frame-src https://www.google.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self' https://wa.me",
@@ -19,11 +25,17 @@ const csp = [
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
-      // Add the production domain and/or future photo-storage provider
-      // (S3 / Vercel Blob / Cloudinary / Supabase Storage) here when wired up.
-      // Nothing needed today - listings render an on-brand placeholder
-      // (components/ImagePlaceholder.tsx) until real photos exist.
+      {
+        protocol: "https",
+        hostname: "*.supabase.co",
+        pathname: "/storage/v1/object/public/**",
+      },
     ],
+  },
+  async redirects() {
+    return [
+      { source: "/private-car-rental", destination: "/self-drive", permanent: true },
+    ];
   },
   async headers() {
     return [

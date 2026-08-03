@@ -26,7 +26,6 @@ export function EnquiryForm({ variant, itemName, vehicleOptions = [], heading, c
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [vehicleType, setVehicleType] = useState(itemName ?? vehicleOptions[0] ?? "");
-  const [driveOption, setDriveOption] = useState<"self-drive" | "chauffeur">("self-drive");
   const [companyName, setCompanyName] = useState("");
   const [duration, setDuration] = useState("");
   const [purpose, setPurpose] = useState("");
@@ -56,16 +55,15 @@ export function EnquiryForm({ variant, itemName, vehicleOptions = [], heading, c
   function buildMessage(): string {
     const lines: string[] = [];
     if (variant === "private-car") {
-      lines.push("New Private Car Rental enquiry");
+      lines.push("New Self Drive enquiry");
       lines.push(`Name: ${name}`);
       lines.push(`Phone: ${phone}`);
       if (vehicleType) lines.push(`Vehicle: ${vehicleType}`);
-      lines.push(`Preference: ${driveOption === "self-drive" ? "Self-drive" : "Chauffeur-driven"}`);
     } else if (variant === "commercial") {
       lines.push("New Commercial Rental enquiry");
       lines.push(`Name: ${name}`);
       lines.push(`Phone: ${phone}`);
-      if (companyName.trim()) lines.push(`Company: ${companyName.trim()}`);
+      if (companyName.trim()) lines.push(`Organization: ${companyName.trim()}`);
       if (vehicleType) lines.push(`Vehicle: ${vehicleType}`);
       if (duration.trim()) lines.push(`Duration: ${duration.trim()}`);
       if (purpose.trim()) lines.push(`Route/Purpose: ${purpose.trim()}`);
@@ -115,7 +113,7 @@ export function EnquiryForm({ variant, itemName, vehicleOptions = [], heading, c
       className={`rounded-[var(--radius-outer)] bg-surface p-6 shadow-[var(--shadow-card)] lg:p-8 ${className}`}
     >
       {heading && (
-        <h3 className="font-heading text-xl font-semibold tracking-tight text-ink">{heading}</h3>
+        <h3 className="font-heading text-xl tracking-tight text-ink">{heading}</h3>
       )}
 
       <div className="mt-5 grid gap-5 sm:grid-cols-2">
@@ -185,27 +183,6 @@ export function EnquiryForm({ variant, itemName, vehicleOptions = [], heading, c
                 ))}
               </select>
             </div>
-            <fieldset>
-              <legend className={labelClasses}>Driving preference</legend>
-              <div className="flex flex-wrap gap-3 pt-1">
-                {(["self-drive", "chauffeur"] as const).map((option) => (
-                  <label
-                    key={option}
-                    className="flex min-h-12 items-center gap-2 rounded-xl border border-hairline-strong px-4 text-sm text-ink transition-colors duration-[var(--dur-micro)] ease-[var(--ease-out)] hover:border-navy hover:bg-surface focus-within:border-navy focus-within:ring-2 focus-within:ring-navy"
-                  >
-                    <input
-                      type="radio"
-                      name="driveOption"
-                      value={option}
-                      checked={driveOption === option}
-                      onChange={() => setDriveOption(option)}
-                      className="h-5 w-5 accent-navy"
-                    />
-                    {option === "self-drive" ? "Self-drive" : "Chauffeur-driven"}
-                  </label>
-                ))}
-              </div>
-            </fieldset>
           </>
         )}
 
@@ -213,7 +190,7 @@ export function EnquiryForm({ variant, itemName, vehicleOptions = [], heading, c
           <>
             <div>
               <label htmlFor={`${formId}-company`} className={labelClasses}>
-                Company name
+                Organization name (leave empty if personal trip)
               </label>
               <input
                 id={`${formId}-company`}

@@ -30,9 +30,12 @@ export function Section({
               </p>
             )}
             {heading && (
-              <h2 className="font-heading text-4xl font-semibold tracking-tighter text-ink lg:text-6xl">
-                {heading}
-              </h2>
+              <>
+                <div className="mb-4 h-px w-12 bg-navy" aria-hidden="true" />
+                <h2 className="font-heading text-4xl tracking-tight text-ink lg:text-6xl">
+                  {heading}
+                </h2>
+              </>
             )}
             {subheading && (
               <p className="mt-3 text-base leading-relaxed text-ink-muted lg:text-lg">{subheading}</p>

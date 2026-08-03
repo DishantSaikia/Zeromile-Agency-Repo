@@ -1,73 +1,105 @@
 @import "tailwindcss";
 
+/*
+  DIRECTION CONTRACT — "The Ledger" (hand-inked register page)
+  THESIS: the site is Zeromile's own running ledger of every trip arranged —
+  each booking a dated, signed entry, not a card in a feature grid.
+  OWN-WORLD: the ledger's opened page, not its cover — warm ivory paper as
+  the dominant ground, deep navy ink for text and primary emphasis (not the
+  earlier oxblood/brass-on-dark cover treatment), aged brass reserved for
+  engraved plate accents. Assigned via concept-seed.mjs (direction scope,
+  mode: persuade, seed 57b1bba9, candidate 3 of 7 derived from the
+  boutique-hospitality brief); recolored from dark-cover to light-page per
+  explicit user direction (light background, navy instead of oxblood).
+*/
+
 :root {
-  /* Surfaces — base -> elevated -> floating. Warm-neutral, not cool-blue,
-     so the canvas reads as white/paper rather than a blue tint. */
-  --color-bg: #ffffff;
-  --color-surface: #f8f6f2;
-  --color-surface-2: #f0ece3;
+  /* Surfaces — the ledger's page, cream and light, not its leather cover. */
+  --color-bg: #f8f3e7;
+  --color-surface: #f1e8d5;
+  --color-surface-2: #eae0c8;
 
-  /* Ink (text) */
-  --color-ink: #0b1b33;
-  --color-ink-muted: #5b6b82;
-  /* ~4.86:1 on white - was #8a96a8 (~3.0:1), which failed the 4.5:1 body
-     text floor on every price-unit label, placeholder caption, and
-     footer line sitewide. */
-  --color-ink-faint: #64728a;
+  /* Ink — deep navy, not black. The ledger's own ink color. */
+  --color-ink: #13223a;
+  --color-ink-muted: #51607a; /* 5.74:1 on --color-bg */
+  --color-ink-faint: #5c6b84; /* 4.87:1 on --color-bg */
 
-  /* Brand — navy is the ink/accent color sampled from the Zeromile logo,
-     not a background fill (see Aesthetic Direction Commitment + Color
-     Theme Rework decisions). */
-  --color-navy: #123a66;
-  --color-navy-deep: #0a2647;
+  /* Primary emphasis fill + accent - a rich navy blue, replacing the
+     earlier brass-on-dark-cover treatment now that the page is light. */
+  --color-navy: #1b3a6b; /* 10.17:1 text vs --color-bg */
+  --color-navy-deep: #122745; /* hover/active */
+  --color-on-navy: #f8f3e7; /* light ivory text on the navy fill */
 
-  /* Complementary warm accent, deliberately invented (not sampled from
-     the logo - the logo itself is navy/blue/white with a pale cream
-     sunset halo, nothing this saturated). Sits opposite navy on the
-     color wheel so the palette isn't just navy + WhatsApp green. Kept
-     under the --color-brand-blue token name so every existing usage
-     (text-brand-blue, bg-brand-blue-soft, etc.) picks up the hue without
-     a site-wide rename. */
-  --color-brand-blue: #9a3412;
-  --color-brand-blue-soft: #fdece0;
+  /* Secondary accent - a lighter steel-blue, distinct from the primary
+     navy fill above. Replaces the earlier terracotta/rust tone entirely -
+     no red-family color remains anywhere in the public palette other than
+     the semantic --color-danger (kept red on purpose - that's a universal
+     safety convention, not a brand color, same reasoning that keeps
+     WhatsApp green fixed regardless of the rest of the palette). */
+  --color-brand-blue: #2d6ca6; /* 4.98:1 on --color-bg, 4.53:1 on --color-surface */
+  --color-brand-blue-soft: #e3edf6;
 
-  /* Fixed by agency-design-system constraint 1 — WhatsApp actions only */
+  /* Fixed by brand commitment — WhatsApp actions only. Untouched by the
+     redesign: this stays the one recognizable "this really opens
+     WhatsApp" signal regardless of what the rest of the palette does. */
   --color-whatsapp: #25d366;
   --color-whatsapp-dark: #1ebd5a;
-  /* Text/icon color for content sitting on the WhatsApp green fill. Fixed
-     dark in BOTH light and dark mode (not aliased to --color-ink) because
-     the green background itself never changes between themes - a
-     theme-aware text color would flip light in dark mode and reintroduce
-     the exact 1.98:1 contrast failure this token exists to avoid. */
   --color-on-whatsapp: #0b1b33;
 
-  /* Sparse trust accent — ratings/badges only, never decorative fills */
-  --color-gold: #c99a3e;
+  /* Ratings/badges/engraved plate accents — aged brass. */
+  --color-gold: #a8823a;
 
-  --color-danger: #dc2626;
+  --color-danger: #b3261e; /* 5.90:1 on --color-bg */
   --color-danger-soft: #fdecec;
 
-  --color-hairline: rgba(11, 27, 51, 0.08);
-  --color-hairline-strong: rgba(11, 27, 51, 0.14);
+  --color-hairline: rgba(19, 34, 58, 0.08);
+  --color-hairline-strong: rgba(19, 34, 58, 0.14);
 
-  /* Motion — confident, decelerating. No bounce/spring anywhere. */
+  /* Motion — confident, decelerating. No bounce/spring anywhere; a
+     ledger's stamp press is a firm decisive motion, not a springy one. */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --dur-micro: 0.18s;
   --dur-base: 0.45s;
   --dur-slow: 0.7s;
 
-  /* One concentric radius relationship, used everywhere a container needs
-     rounding: outer = inner + padding. Loose text/nav elements (pills,
-     underline CTAs) intentionally sit outside this scale. */
-  --radius-inner: 12px;
-  --radius-outer: 20px;
+  /* A printed ledger page has square-ish corners, not soft app-UI
+     rounding — tightened from the previous 12/20px scale. */
+  --radius-inner: 4px;
+  --radius-outer: 8px;
 
   /* make-interfaces-feel-better's three-layer shadow recipe: a hairline,
-     a close contact shadow, a soft ambient one. Replaces ad hoc shadow
-     values everywhere. */
+     a close contact shadow, a soft ambient one, tinted from the ink. */
+  --shadow-card: 0 0 0 1px var(--color-hairline), 0 1px 2px -1px rgba(19, 34, 58, 0.06), 0 12px 28px -8px rgba(19, 34, 58, 0.14);
+  --shadow-card-hover: 0 0 0 1px var(--color-hairline-strong), 0 2px 4px -1px rgba(19, 34, 58, 0.08), 0 20px 40px -10px rgba(19, 34, 58, 0.2);
+}
+
+/* Scopes the admin panel back to its original light, functional palette -
+   an Operate surface deliberately stays out of the ledger redesign; the
+   task and its states matter more there than the brand moment. Wrap the
+   admin route tree's root element in this class. */
+.admin-theme {
+  --color-bg: #ffffff;
+  --color-surface: #f8f6f2;
+  --color-surface-2: #f0ece3;
+  --color-ink: #0b1b33;
+  --color-ink-muted: #5b6b82;
+  --color-ink-faint: #64728a;
+  --color-navy: #123a66;
+  --color-navy-deep: #0a2647;
+  --color-on-navy: #ffffff;
+  --color-brand-blue: #9a3412;
+  --color-brand-blue-soft: #fdece0;
+  --color-gold: #c99a3e;
+  --color-danger: #dc2626;
+  --color-danger-soft: #fdecec;
+  --color-hairline: rgba(11, 27, 51, 0.08);
+  --color-hairline-strong: rgba(11, 27, 51, 0.14);
+  --radius-inner: 12px;
+  --radius-outer: 20px;
   --shadow-card: 0 0 0 1px var(--color-hairline), 0 1px 2px -1px rgba(11, 27, 51, 0.06), 0 6px 16px -4px rgba(11, 27, 51, 0.12);
   --shadow-card-hover: 0 0 0 1px var(--color-hairline-strong), 0 2px 4px -1px rgba(11, 27, 51, 0.08), 0 16px 32px -8px rgba(11, 27, 51, 0.18);
+  color-scheme: light;
 }
 
 @theme inline {
@@ -79,6 +111,7 @@
   --color-ink-faint: var(--color-ink-faint);
   --color-navy: var(--color-navy);
   --color-navy-deep: var(--color-navy-deep);
+  --color-on-navy: var(--color-on-navy);
   --color-brand-blue: var(--color-brand-blue);
   --color-brand-blue-soft: var(--color-brand-blue-soft);
   --color-whatsapp: var(--color-whatsapp);
@@ -90,7 +123,7 @@
   --color-hairline: var(--color-hairline);
   --color-hairline-strong: var(--color-hairline-strong);
 
-  --font-heading: var(--font-lexend);
+  --font-heading: var(--font-caslon);
   --font-body: var(--font-source-sans);
   --font-serif: var(--font-source-serif);
 }
@@ -102,12 +135,12 @@ body {
 }
 
 ::selection {
-  background: var(--color-brand-blue);
-  color: #ffffff;
+  background: var(--color-navy);
+  color: var(--color-on-navy);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-heading), ui-serif, Georgia, serif;
   text-wrap: balance;
 }
 
@@ -128,7 +161,7 @@ p {
   content: "";
   position: absolute;
   inset: 0;
-  outline: 1px solid rgba(11, 27, 51, 0.1);
+  outline: 1px solid var(--color-hairline-strong);
   outline-offset: -1px;
   pointer-events: none;
 }
@@ -141,12 +174,56 @@ p {
   }
 }
 
-/* Subtle print-grain texture — a cheap, tactile "premium" detail. Inline SVG
-   turbulence, no image request. Kept faint enough to never touch contrast. */
+/* Paper-grain texture — inline SVG turbulence, no image request. Multiply
+   so it reads as texture on the light page. Kept faint enough to never
+   touch contrast. */
 .grain-overlay {
   position: absolute;
   inset: 0;
   opacity: 0.035;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Ledger page rules — faint repeating horizontal lines standing in for a
+   ruled register page. Used sparingly behind entry lists, never as a
+   default card background. */
+.ledger-rules {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 2.6rem,
+    var(--color-hairline) 2.6rem,
+    var(--color-hairline) calc(2.6rem + 1px)
+  );
+}
+
+/* Brushed-metal stamped plate - the homepage hero's quick-links bar and
+   brand banner, matching a specific user-provided reference. A deliberate,
+   self-contained visual moment distinct from the rest of the site's
+   palette. Diagonal sheen + four corner rivets in one background-image
+   stack (no extra DOM nodes for the rivets); grain texture layered on a
+   ::before so it can be clipped to the plate's own border-radius. */
+.metal-plate {
+  position: relative;
+  background-color: #cdc7b8;
+  background-image:
+    radial-gradient(circle 4px at 18px 18px, #6b6558 0%, #6b6558 55%, transparent 60%),
+    radial-gradient(circle 4px at calc(100% - 18px) 18px, #6b6558 0%, #6b6558 55%, transparent 60%),
+    radial-gradient(circle 4px at 18px calc(100% - 18px), #6b6558 0%, #6b6558 55%, transparent 60%),
+    radial-gradient(circle 4px at calc(100% - 18px) calc(100% - 18px), #6b6558 0%, #6b6558 55%, transparent 60%),
+    linear-gradient(135deg, #ddd7c9 0%, #cdc7b8 45%, #b9b2a1 55%, #ddd7c9 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+}
+.metal-plate::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0.06;
   mix-blend-mode: multiply;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -162,4 +239,9 @@ p {
   display: flex;
   width: max-content;
   animation: marquee-scroll 28s linear infinite;
+  /* Promotes this to its own compositor layer up front instead of the
+     browser deciding mid-animation - it runs forever alongside whatever
+     else is happening on the page (including scroll), so it shouldn't
+     ever need a fresh layout/paint pass. */
+  will-change: transform;
 }

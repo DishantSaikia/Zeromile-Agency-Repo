@@ -4,10 +4,12 @@ import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "reac
 type Variant = "primary" | "outline" | "ghost" | "underline";
 
 const variantClasses: Record<Variant, string> = {
-  primary: "rounded-full bg-navy text-white hover:bg-navy-deep active:bg-navy-deep",
+  // A stamped brass plate, not a soft app-UI pill - the tightened
+  // --radius-inner reads as an engraved edge, not a rounded button.
+  primary: "rounded-[var(--radius-inner)] bg-navy text-on-navy hover:bg-navy-deep active:bg-navy-deep",
   outline:
-    "rounded-full border border-hairline-strong text-ink hover:border-navy hover:text-navy bg-transparent",
-  ghost: "rounded-full text-navy hover:bg-brand-blue-soft",
+    "rounded-[var(--radius-inner)] border border-hairline-strong text-ink hover:border-navy hover:text-navy bg-transparent",
+  ghost: "rounded-[var(--radius-inner)] text-navy hover:bg-brand-blue-soft",
   // The editorial secondary-action treatment: a text link with a thick
   // accent underline instead of another bordered pill, so not every
   // clickable element reads as the same boxed button.

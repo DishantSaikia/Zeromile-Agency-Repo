@@ -1,23 +1,22 @@
-export type DriveOption = "self-drive" | "chauffeur";
-
 export type VehicleCategory = {
+  id: string;
   slug: string;
   name: string;
-  bodyType: "Hatchback" | "Sedan" | "SUV" | "Luxury";
+  bodyType: "Sedan" | "SUV" | "Normal";
   seats: number;
   transmission: "Manual" | "Automatic";
   fuel: "Petrol" | "Diesel" | "Electric" | "CNG";
   pricePerDay: number;
-  driveOptions: DriveOption[];
   description: string;
   images: string[];
   imageAlt: string[];
 };
 
 export type CommercialVehicleCategory = {
+  id: string;
   slug: string;
   name: string;
-  bodyType: "Mini-Truck" | "Tempo" | "Van" | "Bus";
+  bodyType: "14 Seater" | "12 Seater" | "7 Seater";
   capacity: string;
   idealFor: string[];
   description: string;
@@ -26,6 +25,7 @@ export type CommercialVehicleCategory = {
 };
 
 export type Stay = {
+  id: string;
   slug: string;
   title: string;
   location: string;
@@ -43,6 +43,7 @@ export type Stay = {
 };
 
 export type Package = {
+  id: string;
   slug: string;
   name: string;
   vehicleName: string;
@@ -53,4 +54,25 @@ export type Package = {
   highlights: string[];
   images: string[];
   imageAlt: string[];
+};
+
+export type CategoryThumbnailKey = "self-drive" | "commercial-vehicles" | "stays" | "packages";
+
+export type CategoryThumbnail = {
+  key: CategoryThumbnailKey;
+  image: string | null;
+  imageAlt: string | null;
+};
+
+export type SiteSettings = {
+  logo: string | null;
+  logoAlt: string | null;
+};
+
+export type Testimonial = {
+  id: string;
+  quote: string;
+  name: string;
+  context: string;
+  rating: number;
 };

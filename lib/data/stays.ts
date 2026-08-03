@@ -1,72 +1,57 @@
+import { createClient } from "@/lib/supabase/server";
 import type { Stay } from "./types";
 
-export const stays: Stay[] = [
-  {
-    slug: "riverside-cottage",
-    title: "Riverside Cottage",
-    location: "Riverside, Guwahati",
-    pricePerNight: 3200,
-    maxGuests: 4,
-    bedrooms: 2,
-    beds: 2,
-    baths: 1,
-    amenities: ["Wi-Fi", "Free parking", "Kitchen", "River view", "Air conditioning"],
-    description:
-      "A quiet two-bedroom cottage steps from the water, with a private porch for evenings in.",
-    checkInTime: "2:00 PM",
-    checkOutTime: "11:00 AM",
-    images: [],
-    imageAlt: [],
-  },
-  {
-    slug: "hillside-studio",
-    title: "Hillside Studio",
-    location: "Shillong Road, Hills",
-    pricePerNight: 2400,
-    maxGuests: 2,
-    bedrooms: 1,
-    beds: 1,
-    baths: 1,
-    amenities: ["Wi-Fi", "Mountain view", "Heater", "Kitchenette"],
-    description:
-      "A compact studio with panoramic hill views - well suited to a quiet weekend for two.",
-    checkInTime: "1:00 PM",
-    checkOutTime: "10:00 AM",
-    images: [],
-    imageAlt: [],
-  },
-  {
-    slug: "city-loft",
-    title: "City Loft",
-    location: "Downtown, Guwahati",
-    pricePerNight: 4100,
-    maxGuests: 3,
-    bedrooms: 1,
-    beds: 2,
-    baths: 1,
-    amenities: ["Wi-Fi", "Elevator", "Workspace", "Air conditioning", "Washing machine"],
-    description:
-      "A well-appointed loft close to the business district, built for short work trips.",
-    checkInTime: "3:00 PM",
-    checkOutTime: "11:00 AM",
-    images: [],
-    imageAlt: [],
-  },
-  {
-    slug: "lakeview-bungalow",
-    title: "Lakeview Bungalow",
-    location: "Lake Road, Guwahati",
-    pricePerNight: 5600,
-    maxGuests: 6,
-    bedrooms: 3,
-    beds: 3,
-    baths: 2,
-    amenities: ["Wi-Fi", "Free parking", "Lake view", "Garden", "Kitchen", "Air conditioning"],
-    description:
-      "A full bungalow for families or groups, with a garden that opens onto the lake path.",
-    checkInTime: "2:00 PM",
-    checkOutTime: "11:00 AM",
-    images: [],
-    imageAlt: [],
-  },
-];
+type StayRow = {
+  id: string;
+  slug: string;
+  title: string;
+  location: string;
+  price_per_night: number;
+  max_guests: number;
+  bedrooms: number;
+  beds: number;
+  baths: number;
+  amenities: string[];
+  description: string;
+  check_in_time: string;
+  check_out_time: string;
+  images: string[];
+  image_alt: string[];
+};
+
+function mapRow(row: StayRow): Stay {
+  return {
+    id: row.id,
+    slug: row.slug,
+    title: row.title,
+    location: row.location,
+    pricePerNight: row.price_per_night,
+    maxGuests: row.max_guests,
+    bedrooms: row.bedrooms,
+    beds: row.beds,
+    baths: row.baths,
+    amenities: row.amenities,
+    description: row.description,
+    checkInTime: row.check_in_time,
+    checkOutTime: row.check_out_time,
+    images: row.images,
+    imageAlt: row.image_alt,
+  };
+}
+
+export async function getStays(): Promise<Stay[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("stays")
+    .select("*")
+    .order("price_per_night", { ascending: true });
+  if (error) throw error;
+  return (data ?? []).map(mapRow);
+}
+
+export async function getStayBySlug(slug: string): Promise<Stay | null> {
+  const supabase = await createClient();
+  const { data, error } = await supabase.from("stays").select("*").eq("slug", slug).maybeSingle();
+  if (error) throw error;
+  return data ? mapRow(data) : null;
+}

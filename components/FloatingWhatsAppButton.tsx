@@ -50,5 +50,6 @@ function ObservedFloatingButton() {
  */
 export function FloatingWhatsAppButton() {
   const pathname = usePathname();
+  if (pathname.startsWith("/admin")) return null;
   return <ObservedFloatingButton key={pathname} />;
 }

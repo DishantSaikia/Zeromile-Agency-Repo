@@ -5,11 +5,8 @@ import {
   CarIcon,
   HatchbackIcon,
   HomeIcon,
-  LuxuryCarIcon,
   MapPinIcon,
-  MiniTruckIcon,
   SuvIcon,
-  TruckIcon,
   VanIcon,
 } from "@/components/icons";
 
@@ -18,17 +15,15 @@ type Icon = ComponentType<SVGProps<SVGSVGElement>>;
 // Keyed by bodyType/slug so listing grids read distinct by shape at a
 // glance, not just by reading the price and copy on each card.
 export const VEHICLE_ICONS: Record<string, Icon> = {
-  Hatchback: HatchbackIcon,
   Sedan: CarIcon,
   SUV: SuvIcon,
-  Luxury: LuxuryCarIcon,
+  Normal: HatchbackIcon,
 };
 
 export const COMMERCIAL_ICONS: Record<string, Icon> = {
-  "Mini-Truck": MiniTruckIcon,
-  Tempo: TruckIcon,
-  Van: VanIcon,
-  Bus: BusIcon,
+  "14 Seater": BusIcon,
+  "12 Seater": VanIcon,
+  "7 Seater": VanIcon,
 };
 
 export const STAY_ICONS: Record<string, Icon> = {

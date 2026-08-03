@@ -3,10 +3,14 @@ import { Section } from "@/components/Section";
 import { ListingCard } from "@/components/ListingCard";
 import { RevealGrid } from "@/components/RevealGrid";
 import { EnquiryForm } from "@/components/EnquiryForm";
-import { packages } from "@/lib/data/packages";
+import { getPackages } from "@/lib/data/packages";
 import { getListingImages } from "@/lib/images";
 import { CalendarIcon, CarIcon, HomeIcon } from "@/components/icons";
 import { PACKAGE_ICONS } from "@/lib/icon-maps";
+
+// Packages are managed from /admin - render fresh on every request instead
+// of prerendering at build.
+export const dynamic = "force-dynamic";
 
 const title = "Packages";
 const description =
@@ -18,36 +22,42 @@ export const metadata: Metadata = {
   openGraph: { title, description },
 };
 
-export default function PackagesPage() {
+export default async function PackagesPage() {
+  const packages = await getPackages();
+
   return (
     <>
       <Section
         heading="A vehicle and a stay, bundled"
         subheading="Each package pairs a vehicle with a stay for a set trip length, priced as one - no adding up two separate bookings."
       >
-        <RevealGrid className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-          {packages.map((pkg, index) => {
-            const images = getListingImages("package", pkg.slug);
-            return (
-              <ListingCard
-                key={pkg.slug}
-                title={pkg.name}
-                subtitle={pkg.duration}
-                image={images[0]}
-                placeholderIcon={PACKAGE_ICONS[pkg.slug] ?? HomeIcon}
-                priority={index === 0}
-                specs={[
-                  { icon: CarIcon, label: pkg.vehicleName },
-                  { icon: HomeIcon, label: pkg.stayName },
-                  { icon: CalendarIcon, label: pkg.duration },
-                ]}
-                price={`₹${pkg.price.toLocaleString("en-IN")}`}
-                priceUnit="per package"
-                whatsappMessage={`Hi! I'd like to enquire about the ${pkg.name} package (${pkg.vehicleName} + ${pkg.stayName}, ${pkg.duration}).`}
-              />
-            );
-          })}
-        </RevealGrid>
+        {packages.length === 0 ? (
+          <p className="text-base text-ink-muted">No packages listed yet - check back soon.</p>
+        ) : (
+          <RevealGrid className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+            {packages.map((pkg, index) => {
+              const images = getListingImages(pkg);
+              return (
+                <ListingCard
+                  key={pkg.slug}
+                  title={pkg.name}
+                  subtitle={pkg.duration}
+                  image={images[0]}
+                  placeholderIcon={PACKAGE_ICONS[pkg.slug] ?? HomeIcon}
+                  priority={index === 0}
+                  specs={[
+                    { icon: CarIcon, label: pkg.vehicleName },
+                    { icon: HomeIcon, label: pkg.stayName },
+                    { icon: CalendarIcon, label: pkg.duration },
+                  ]}
+                  price={`₹${pkg.price.toLocaleString("en-IN")}`}
+                  priceUnit="per package"
+                  whatsappMessage={`Hi! I'd like to enquire about the ${pkg.name} package (${pkg.vehicleName} + ${pkg.stayName}, ${pkg.duration}).`}
+                />
+              );
+            })}
+          </RevealGrid>
+        )}
       </Section>
 
       <Section

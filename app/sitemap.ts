@@ -1,12 +1,12 @@
 import type { MetadataRoute } from "next";
-import { stays } from "@/lib/data/stays";
+import { getStays } from "@/lib/data/stays";
 
 const BASE_URL = "https://zeromileagency.example";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [
     "",
-    "/private-car-rental",
+    "/self-drive",
     "/commercial-rental",
     "/stays",
     "/packages",
@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
+  const stays = await getStays();
   const stayRoutes = stays.map((stay) => ({
     url: `${BASE_URL}/stays/${stay.slug}`,
     lastModified: new Date(),

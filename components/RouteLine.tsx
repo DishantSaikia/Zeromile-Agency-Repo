@@ -10,8 +10,8 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const WAYPOINTS = [
   { cx: 40, cy: 150, label: "Zero mile" },
-  { cx: 430, cy: 60, label: "Private cars" },
-  { cx: 780, cy: 150, label: "Commercial fleet" },
+  { cx: 430, cy: 60, label: "Self-drive" },
+  { cx: 780, cy: 150, label: "Commercial Vehicles" },
   { cx: 1160, cy: 55, label: "Stays" },
 ];
 
@@ -72,31 +72,31 @@ export function RouteLine() {
     <svg
       ref={rootRef}
       viewBox="0 0 1200 200"
-      className="h-auto w-full text-brand-blue"
+      className="h-auto w-full text-navy"
       role="img"
-      aria-label="A route line connecting zero mile to private car rental, commercial fleet, and stays"
+      aria-label="A route line connecting zero mile to self-drive rental, commercial vehicles, and stays"
     >
       <path
         className="route-path"
         d="M40,150 C220,150 250,60 430,60 C610,60 610,150 780,150 C960,150 990,55 1160,55"
         fill="none"
         stroke="currentColor"
-        strokeWidth="3"
+        strokeWidth="4.5"
         strokeLinecap="round"
       />
       {WAYPOINTS.map((point) => (
         <g key={point.label}>
-          <circle className="route-dot" cx={point.cx} cy={point.cy} r="7" fill="var(--color-navy)" />
-          <circle className="route-dot" cx={point.cx} cy={point.cy} r="3" fill="var(--color-bg)" />
+          <circle className="route-dot" cx={point.cx} cy={point.cy} r="9" fill="var(--color-navy)" />
+          <circle className="route-dot" cx={point.cx} cy={point.cy} r="4" fill="var(--color-bg)" />
           <text
             className="route-label"
             x={point.cx}
-            y={point.cy - 18}
+            y={point.cy - 20}
             textAnchor="middle"
-            fontSize="15"
+            fontSize="17"
             fontFamily="var(--font-heading)"
-            fontWeight="600"
-            fill="var(--color-ink-muted)"
+            fontWeight="400"
+            fill="var(--color-ink)"
           >
             {point.label}
           </text>

@@ -6,7 +6,7 @@ import { ClockIcon } from "@/components/icons";
 import { agencyConfig } from "@/lib/config";
 
 const title = "Contact";
-const description = `Get in touch with ${agencyConfig.name} over WhatsApp or email for private car, commercial rental, or stay enquiries.`;
+const description = `Get in touch with ${agencyConfig.name} over WhatsApp or email for self-drive car, commercial rental, or stay enquiries.`;
 
 export const metadata: Metadata = {
   title,
@@ -23,7 +23,7 @@ export default function ContactPage() {
       <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-12">
         <div>
           <div className="rounded-2xl border border-hairline bg-surface p-6">
-            <h2 className="font-heading text-base font-semibold tracking-tight text-ink">WhatsApp</h2>
+            <h2 className="font-heading text-base tracking-tight text-ink">WhatsApp</h2>
             <p className="mt-1.5 text-sm text-ink-muted">The fastest way to reach us - most replies come within minutes.</p>
             <div className="mt-4">
               <WhatsAppButton />
@@ -31,13 +31,24 @@ export default function ContactPage() {
           </div>
 
           <div className="mt-5 rounded-2xl border border-hairline bg-surface p-6">
-            <h2 className="font-heading text-base font-semibold tracking-tight text-ink">Email</h2>
+            <h2 className="font-heading text-base tracking-tight text-ink">Email</h2>
             <p className="mt-1.5 text-sm text-ink-muted">For anything you&apos;d rather put in writing.</p>
             <a
               href={`mailto:${agencyConfig.email}`}
               className="mt-3 inline-block text-sm font-medium text-navy hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy rounded"
             >
               {agencyConfig.email}
+            </a>
+          </div>
+
+          <div className="mt-5 rounded-2xl border border-hairline bg-surface p-6">
+            <h2 className="font-heading text-base tracking-tight text-ink">Phone</h2>
+            <p className="mt-1.5 text-sm text-ink-muted">Prefer to call? We&apos;re reachable directly.</p>
+            <a
+              href={`tel:+${agencyConfig.whatsappNumber}`}
+              className="mt-3 inline-block text-sm font-medium text-navy hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy rounded"
+            >
+              {agencyConfig.phoneDisplay}
             </a>
           </div>
 
@@ -48,6 +59,22 @@ export default function ContactPage() {
         </div>
 
         <EnquiryForm variant="general" heading="Send us a message" />
+      </div>
+
+      <div className="mt-10 overflow-hidden rounded-2xl border border-hairline bg-surface">
+        <div className="border-b border-hairline p-6">
+          <h2 className="font-heading text-base tracking-tight text-ink">Find us</h2>
+          <p className="mt-1.5 text-sm text-ink-muted">Our location on Google Maps.</p>
+        </div>
+        <div className="aspect-[16/9] w-full">
+          <iframe
+            src={agencyConfig.googleMapsEmbedUrl}
+            title={`${agencyConfig.name} location on Google Maps`}
+            className="h-full w-full"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
       </div>
     </Section>
   );

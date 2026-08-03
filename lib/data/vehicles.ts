@@ -1,60 +1,49 @@
+import { createClient } from "@/lib/supabase/server";
 import type { VehicleCategory } from "./types";
 
-export const vehicles: VehicleCategory[] = [
-  {
-    slug: "hatchback",
-    name: "Hatchback",
-    bodyType: "Hatchback",
-    seats: 4,
-    transmission: "Manual",
-    fuel: "Petrol",
-    pricePerDay: 1800,
-    driveOptions: ["self-drive", "chauffeur"],
-    description:
-      "Easy to park, easy on fuel - a practical pick for city errands and short trips.",
-    images: [],
-    imageAlt: [],
-  },
-  {
-    slug: "sedan",
-    name: "Sedan",
-    bodyType: "Sedan",
-    seats: 5,
-    transmission: "Automatic",
-    fuel: "Petrol",
-    pricePerDay: 2800,
-    driveOptions: ["self-drive", "chauffeur"],
-    description:
-      "A comfortable, composed ride for business travel, airport runs, and family outings.",
-    images: [],
-    imageAlt: [],
-  },
-  {
-    slug: "suv",
-    name: "SUV",
-    bodyType: "SUV",
-    seats: 7,
-    transmission: "Automatic",
-    fuel: "Diesel",
-    pricePerDay: 4200,
-    driveOptions: ["self-drive", "chauffeur"],
-    description:
-      "Room for the whole group and the luggage - built for highway trips and rough patches alike.",
-    images: [],
-    imageAlt: [],
-  },
-  {
-    slug: "luxury",
-    name: "Luxury",
-    bodyType: "Luxury",
-    seats: 5,
-    transmission: "Automatic",
-    fuel: "Petrol",
-    pricePerDay: 8500,
-    driveOptions: ["chauffeur"],
-    description:
-      "Premium interiors and a chauffeur at the wheel - for occasions that call for it.",
-    images: [],
-    imageAlt: [],
-  },
-];
+type VehicleRow = {
+  id: string;
+  slug: string;
+  name: string;
+  body_type: VehicleCategory["bodyType"];
+  seats: number;
+  transmission: VehicleCategory["transmission"];
+  fuel: VehicleCategory["fuel"];
+  price_per_day: number;
+  description: string;
+  images: string[];
+  image_alt: string[];
+};
+
+function mapRow(row: VehicleRow): VehicleCategory {
+  return {
+    id: row.id,
+    slug: row.slug,
+    name: row.name,
+    bodyType: row.body_type,
+    seats: row.seats,
+    transmission: row.transmission,
+    fuel: row.fuel,
+    pricePerDay: row.price_per_day,
+    description: row.description,
+    images: row.images,
+    imageAlt: row.image_alt,
+  };
+}
+
+export async function getVehicles(): Promise<VehicleCategory[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("vehicles")
+    .select("*")
+    .order("price_per_day", { ascending: true });
+  if (error) throw error;
+  return (data ?? []).map(mapRow);
+}
+
+export async function getVehicleBySlug(slug: string): Promise<VehicleCategory | null> {
+  const supabase = await createClient();
+  const { data, error } = await supabase.from("vehicles").select("*").eq("slug", slug).maybeSingle();
+  if (error) throw error;
+  return data ? mapRow(data) : null;
+}

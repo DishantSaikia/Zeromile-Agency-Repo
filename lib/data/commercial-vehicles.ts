@@ -1,48 +1,48 @@
+import { createClient } from "@/lib/supabase/server";
 import type { CommercialVehicleCategory } from "./types";
 
-export const commercialVehicles: CommercialVehicleCategory[] = [
-  {
-    slug: "mini-truck",
-    name: "Mini-Truck",
-    bodyType: "Mini-Truck",
-    capacity: "Up to 750 kg",
-    idealFor: ["Local goods delivery", "Small business restocking", "Office relocations"],
-    description:
-      "Nimble in city traffic with enough load space for regular commercial runs.",
-    images: [],
-    imageAlt: [],
-  },
-  {
-    slug: "tempo",
-    name: "Tempo",
-    bodyType: "Tempo",
-    capacity: "Up to 1500 kg",
-    idealFor: ["Bulk goods transport", "Inter-city freight", "Event logistics"],
-    description:
-      "A mid-size workhorse for heavier loads and longer commercial routes.",
-    images: [],
-    imageAlt: [],
-  },
-  {
-    slug: "van",
-    name: "Van",
-    bodyType: "Van",
-    capacity: "9-12 seats or cargo equivalent",
-    idealFor: ["Staff transport", "Airport transfers for groups", "Equipment transport"],
-    description:
-      "Flexible for passengers or cargo - a common pick for staff and crew transport contracts.",
-    images: [],
-    imageAlt: [],
-  },
-  {
-    slug: "bus",
-    name: "Bus",
-    bodyType: "Bus",
-    capacity: "25-40 seats",
-    idealFor: ["Corporate group travel", "School/institutional transport", "Long-term contracts"],
-    description:
-      "For larger groups and long-term contracts - fleet-backed and GST-invoiced.",
-    images: [],
-    imageAlt: [],
-  },
-];
+type CommercialVehicleRow = {
+  id: string;
+  slug: string;
+  name: string;
+  body_type: CommercialVehicleCategory["bodyType"];
+  capacity: string;
+  ideal_for: string[];
+  description: string;
+  images: string[];
+  image_alt: string[];
+};
+
+function mapRow(row: CommercialVehicleRow): CommercialVehicleCategory {
+  return {
+    id: row.id,
+    slug: row.slug,
+    name: row.name,
+    bodyType: row.body_type,
+    capacity: row.capacity,
+    idealFor: row.ideal_for,
+    description: row.description,
+    images: row.images,
+    imageAlt: row.image_alt,
+  };
+}
+
+export async function getCommercialVehicles(): Promise<CommercialVehicleCategory[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase.from("commercial_vehicles").select("*").order("name");
+  if (error) throw error;
+  return (data ?? []).map(mapRow);
+}
+
+export async function getCommercialVehicleBySlug(
+  slug: string
+): Promise<CommercialVehicleCategory | null> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("commercial_vehicles")
+    .select("*")
+    .eq("slug", slug)
+    .maybeSingle();
+  if (error) throw error;
+  return data ? mapRow(data) : null;
+}
