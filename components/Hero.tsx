@@ -110,8 +110,7 @@ export function Hero() {
             Every trip starts at zero.
           </h1>
           <p className="hero-subtext mt-6 max-w-md text-base leading-relaxed text-ink-muted lg:text-lg">
-            Private cars, commercial fleet, and stays: book any of it in one WhatsApp message.
-            No forms, no hold music, no online payment.
+            Car Rentals, Commercial Vehicles, and Stays: book any of it in one WhatsApp message.
           </p>
           <div className="hero-cta mt-8">
             <MagneticWrapper>
