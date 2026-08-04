@@ -72,7 +72,7 @@ export function Hero() {
       mm.add("(prefers-reduced-motion: reduce)", () => {
         gsap.set(
           [".hero-media", ".hero-eyebrow", ".hero-heading", ".hero-subtext", ".hero-cta"],
-          { opacity: 1, y: 0, scale: 1 }
+          { opacity: 1, x: 0, y: 0, scale: 1 }
         );
       });
 
@@ -84,7 +84,7 @@ export function Hero() {
   return (
     <div
       ref={rootRef}
-      className="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden bg-bg lg:min-h-[42rem]"
+      className="relative overflow-hidden bg-bg pb-12 pt-20 lg:pb-20 lg:pt-32"
     >
       <div className="hero-media absolute inset-0" aria-hidden="true">
         <div
@@ -98,14 +98,14 @@ export function Hero() {
         <div className="grain-overlay" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="max-w-xl">
           <p className="hero-eyebrow mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">
-            Private Cars · Commercial Fleet · Stays
+            Car Rentals · Commercial Vehicles · Stays · Full Packages
           </p>
           <h1
             ref={headingRef}
-            className="hero-heading font-heading text-5xl font-semibold leading-[0.98] tracking-tighter text-ink sm:text-7xl lg:text-8xl"
+            className="hero-heading font-heading text-5xl font-semibold leading-[1.25] tracking-tighter text-ink sm:text-7xl lg:text-8xl"
           >
             Every trip starts at zero.
           </h1>
