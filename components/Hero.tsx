@@ -98,7 +98,7 @@ export function Hero() {
         <div className="grain-overlay" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-xl">
           <p className="hero-eyebrow mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">
             Car Rentals · Commercial Vehicles · Stays · Full Packages
