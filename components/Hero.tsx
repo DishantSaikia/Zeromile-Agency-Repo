@@ -99,7 +99,7 @@ export function Hero() {
         <div className="absolute inset-x-4 bottom-0 sm:inset-x-6 lg:inset-x-8">
           <div className="mx-[14%] hero-plate metal-plate overflow-hidden rounded-t-[1rem] px-[1.35rem] py-[1.64025rem] text-center shadow-[0_24px_48px_-12px_rgba(0,0,0,0.45)] sm:py-[2.29635rem]">
             <h1
-              className="text-4xl uppercase leading-none text-[#1a1a1a] sm:text-5xl lg:text-7xl"
+              className="text-2xl uppercase leading-none text-[#1a1a1a] sm:text-5xl lg:text-7xl"
               style={{ fontFamily: "var(--font-body)", fontWeight: 560, transform: "scale(1.1, 1.2)" }}
             >
               Zeromile Agency
