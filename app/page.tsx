@@ -17,11 +17,10 @@
  * personally recorded, not processed by a system - and that a single
  * WhatsApp message is how their own entry gets made.
  *
- * FIRST VIEWPORT: Hero.tsx - the ledger's frontispiece. A running folio
- * header stands in for a generic eyebrow, the fleet photo is captioned like
- * a numbered plate mounted to the page, and the ambient gradient-blob
- * background (the single most templated "AI landing page" signature) is
- * gone entirely.
+ * FIRST VIEWPORT: Hero.tsx - reverted to its original, simpler pre-redesign
+ * form (gradient-blob background, headline, subtext, single CTA) at the
+ * client's explicit request, superseding the "ledger frontispiece" version
+ * described below. Everything else on the page stays on the ledger system.
  *
  * FORM: leather guestbook / hand-inked ledger register - candidate 3 of 7
  * derived from the boutique-hospitality-luxury brief (split-flap dispatch
@@ -38,13 +37,6 @@
  * The admin panel (/admin/*) is a deliberate exception - an Operate surface
  * that keeps its original light, functional palette (see .admin-theme in
  * app/globals.css) rather than inheriting this world.
- *
- * HERO EXCEPTION: Hero.tsx was rebuilt to match a specific user-provided
- * reference mockup (full-bleed road photo, brushed-metal stamped plates,
- * Big Shoulders Stencil display type) - a deliberate, scoped departure from
- * the ledger world above, requested for this one section while a fuller
- * site redesign is still being planned. Everything below the hero stays on
- * the ledger system.
  */
 
 import { Hero } from "@/components/Hero";
