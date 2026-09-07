@@ -243,3 +243,19 @@ p {
      ever need a fresh layout/paint pass. */
   will-change: transform;
 }
+
+.marquee-group {
+  display: flex;
+  flex: none;
+  align-items: center;
+}
+
+/* A natural-width group leaves a blank stretch on wide screens before its
+   duplicate enters the viewport. Giving each loop a viewport-wide lane keeps
+   the sequence continuous while preserving its compact mobile behavior. */
+@media (min-width: 640px) {
+  .marquee-group {
+    min-width: 100vw;
+    justify-content: space-around;
+  }
+}

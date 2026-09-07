@@ -15,7 +15,7 @@ export function Marquee() {
   const row = (
     <div className="marquee-track">
       {[0, 1].map((copy) => (
-        <div key={copy} className="flex shrink-0 items-center" aria-hidden={copy === 1}>
+        <div key={copy} className="marquee-group" aria-hidden={copy === 1}>
           {ITEMS.map((item) => (
             <span key={item} className="flex items-center whitespace-nowrap">
               <span className="text-xs font-semibold uppercase tracking-[0.25em] text-ink-muted">
@@ -33,7 +33,7 @@ export function Marquee() {
 
   return (
     <div
-      className="overflow-hidden border-y border-hairline py-4"
+      className="w-full max-w-full overflow-hidden border-y border-hairline py-4"
       style={{
         maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
         WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
