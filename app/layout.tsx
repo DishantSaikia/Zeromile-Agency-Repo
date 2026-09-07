@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Libre_Caslon_Display, Source_Sans_3, Source_Serif_4 } from "next/font/google";
+import { Playfair_Display, Source_Sans_3, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -8,10 +8,10 @@ import { ScrollTriggerRefresh } from "@/components/ScrollTriggerRefresh";
 import { agencyConfig } from "@/lib/config";
 import { getSiteSettings } from "@/lib/data/site-settings";
 
-const caslon = Libre_Caslon_Display({
-  variable: "--font-caslon",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["700", "800"],
   display: "swap",
 });
 
@@ -55,7 +55,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${caslon.variable} ${sourceSans.variable} ${sourceSerif.variable} h-full antialiased`}
+      className={`${playfair.variable} ${sourceSans.variable} ${sourceSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-bg text-ink">
         <a
@@ -65,7 +65,7 @@ export default async function RootLayout({
           Skip to main content
         </a>
         <Header logo={siteSettings.logo} logoAlt={siteSettings.logoAlt} />
-        <main id="main-content" className="flex-1">
+        <main id="main-content" className="flex-1 pt-16 lg:pt-20">
           {children}
         </main>
         <Footer logo={siteSettings.logo} logoAlt={siteSettings.logoAlt} />

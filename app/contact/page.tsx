@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageBanner } from "@/components/PageBanner";
 import { Section } from "@/components/Section";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -16,10 +17,14 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <Section
-      heading="Get in touch"
-      subheading="For anything that doesn't fit a specific booking form, send us a message here or start a WhatsApp chat directly."
-    >
+    <>
+      <PageBanner title="Contact" crumb="Contact" />
+
+      <Section
+        eyebrow="Reach us"
+        heading="Get in touch"
+        subheading="For anything that doesn't fit a specific booking form, send us a message here or start a WhatsApp chat directly."
+      >
       <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-12">
         <div>
           <div className="rounded-2xl border border-hairline bg-surface p-6">
@@ -76,6 +81,7 @@ export default function ContactPage() {
           />
         </div>
       </div>
-    </Section>
+      </Section>
+    </>
   );
 }

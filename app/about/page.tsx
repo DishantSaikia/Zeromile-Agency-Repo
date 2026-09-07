@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageBanner } from "@/components/PageBanner";
 import { Section } from "@/components/Section";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { CarIcon, ClockIcon, ShieldIcon } from "@/components/icons";
@@ -34,7 +35,10 @@ const VALUES = [
 export default function AboutPage() {
   return (
     <>
+      <PageBanner title="About" crumb="About" />
+
       <Section
+        eyebrow="Who we are"
         heading="Drive freely. Live limitless."
         subheading="We started Zeromile Agency to make renting a car, hiring a commercial vehicle, or booking a stay feel like messaging a friend who happens to have the keys - not filling out a form and waiting."
       >

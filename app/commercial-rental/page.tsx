@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageBanner } from "@/components/PageBanner";
 import { Section } from "@/components/Section";
 import { ListingCard } from "@/components/ListingCard";
 import { ImageRevealGrid } from "@/components/ImageRevealGrid";
@@ -27,7 +28,9 @@ export default async function CommercialRentalPage() {
 
   return (
     <>
-      <Section heading="Choose a vehicle type">
+      <PageBanner title="Commercial Rental" crumb="Commercial Rental" />
+
+      <Section eyebrow="Fleet for business" heading="Choose a vehicle type">
         {commercialVehicles.length === 0 ? (
           <p className="text-base text-ink-muted">No commercial vehicles listed yet - check back soon.</p>
         ) : (

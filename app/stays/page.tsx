@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageBanner } from "@/components/PageBanner";
 import { Section } from "@/components/Section";
 import { ListingCard } from "@/components/ListingCard";
 import { ImageRevealGrid } from "@/components/ImageRevealGrid";
@@ -26,7 +27,10 @@ export default async function StaysPage() {
 
   return (
     <>
+      <PageBanner title="Stays" crumb="Stays" />
+
       <Section
+        eyebrow="Short-term stays"
         heading="Short-term stays, booked directly with us"
         subheading="Pick a place below for the full gallery, amenities, and availability - or message us and we'll help you choose."
       >

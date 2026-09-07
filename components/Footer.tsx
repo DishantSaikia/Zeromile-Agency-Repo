@@ -27,7 +27,7 @@ export function Footer({ logo, logoAlt }: Props) {
   if (pathname.startsWith("/admin")) return null;
 
   return (
-    <footer className="border-t border-hairline bg-surface">
+    <footer className="bg-[#0b0c0b] text-white/70">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr]">
           <div>
@@ -40,24 +40,24 @@ export function Footer({ logo, logoAlt }: Props) {
                 unoptimized={Boolean(logo)}
                 className="h-9 w-9"
               />
-              <span className="font-heading text-lg tracking-tight text-ink">
+              <span className="font-heading text-lg tracking-tight text-white">
                 Zeromile Agency
               </span>
             </div>
-            <p className="mt-3 max-w-sm text-sm leading-relaxed text-ink-muted">
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/60">
               {agencyConfig.tagline} Self-drive car rental, commercial vehicle hire, and short-term
               stays - booked over a WhatsApp chat, no paperwork upfront.
             </p>
           </div>
 
           <div>
-            <h2 className="font-heading text-sm tracking-tight text-ink">Explore</h2>
+            <h2 className="font-heading text-sm tracking-tight text-white">Explore</h2>
             <ul className="mt-4 space-y-2.5">
               {FOOTER_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-ink-muted transition-colors hover:text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy rounded"
+                    className="text-sm text-white/60 transition-colors hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded"
                   >
                     {link.label}
                   </Link>
@@ -67,19 +67,19 @@ export function Footer({ logo, logoAlt }: Props) {
           </div>
 
           <div>
-            <h2 className="font-heading text-sm tracking-tight text-ink">Get in touch</h2>
-            <p className="mt-4 text-sm text-ink-muted">
+            <h2 className="font-heading text-sm tracking-tight text-white">Get in touch</h2>
+            <p className="mt-4 text-sm text-white/60">
               <a
                 href={`mailto:${agencyConfig.email}`}
-                className="transition-colors hover:text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy rounded"
+                className="transition-colors hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded"
               >
                 {agencyConfig.email}
               </a>
             </p>
-            <p className="mt-2 text-sm text-ink-muted">
+            <p className="mt-2 text-sm text-white/60">
               <a
                 href={`tel:+${agencyConfig.whatsappNumber}`}
-                className="transition-colors hover:text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy rounded"
+                className="transition-colors hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded"
               >
                 {agencyConfig.phoneDisplay}
               </a>
@@ -89,7 +89,7 @@ export function Footer({ logo, logoAlt }: Props) {
                 href={agencyConfig.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-ink-muted transition-colors hover:text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy rounded"
+                className="text-white/60 transition-colors hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded"
               >
                 Find us on Google Maps
               </a>
@@ -100,7 +100,7 @@ export function Footer({ logo, logoAlt }: Props) {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-hairline pt-6 text-xs text-ink-faint sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} {agencyConfig.name}. All rights reserved.</p>
           <p>No online payments - every booking is confirmed with our team over WhatsApp.</p>
         </div>

@@ -9,8 +9,9 @@ const csp = [
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   // *.supabase.co - listing photos are served from Supabase Storage's
-  // public bucket URL.
-  "img-src 'self' data: https://*.supabase.co",
+  // public bucket URL. placehold.co - temporary placeholder imagery until
+  // real photos are supplied (see Hero.tsx, PageBanner.tsx).
+  "img-src 'self' data: https://*.supabase.co https://placehold.co",
   "font-src 'self' data:",
   // *.supabase.co - the admin panel's browser client talks to Supabase
   // Auth/Storage/Postgres directly from the client.
@@ -29,6 +30,12 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "*.supabase.co",
         pathname: "/storage/v1/object/public/**",
+      },
+      // Temporary placeholder imagery until real hero/banner photos are
+      // supplied - see Hero.tsx and PageBanner.tsx.
+      {
+        protocol: "https",
+        hostname: "placehold.co",
       },
     ],
   },

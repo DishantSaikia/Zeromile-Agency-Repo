@@ -1,77 +1,75 @@
 @import "tailwindcss";
 
 /*
-  DIRECTION CONTRACT — "The Ledger" (hand-inked register page)
-  THESIS: the site is Zeromile's own running ledger of every trip arranged —
-  each booking a dated, signed entry, not a card in a feature grid.
-  OWN-WORLD: the ledger's opened page, not its cover — warm ivory paper as
-  the dominant ground, deep navy ink for text and primary emphasis (not the
-  earlier oxblood/brass-on-dark cover treatment), aged brass reserved for
-  engraved plate accents. Assigned via concept-seed.mjs (direction scope,
-  mode: persuade, seed 57b1bba9, candidate 3 of 7 derived from the
-  boutique-hospitality brief); recolored from dark-cover to light-page per
-  explicit user direction (light background, navy instead of oxblood).
+  DIRECTION CONTRACT — "Northeast Travel" (photo-forward trip operator)
+  THESIS: the site sells real trips, not an abstract ledger metaphor —
+  full-bleed destination/vehicle photography up front, green as the one
+  living brand color running through badges, labels, and CTAs, black used
+  deliberately for the footer's contrast band. Superseding "The Ledger"
+  direction entirely per explicit client request to match a reference
+  operator site (kazirangatravels.com): photo hero, green accent used
+  sitewide (not reserved to WhatsApp CTAs only), serif display headings,
+  card-grid product listings with a price badge overlaid on the photo.
 */
 
 :root {
-  /* Surfaces — the ledger's page, cream and light, not its leather cover. */
-  --color-bg: #f8f3e7;
-  --color-surface: #f1e8d5;
-  --color-surface-2: #eae0c8;
+  /* Surfaces — clean white page, not the ledger's cream paper. */
+  --color-bg: #ffffff;
+  --color-surface: #f5f6f3;
+  --color-surface-2: #e9ebe6;
 
-  /* Ink — deep navy, not black. The ledger's own ink color. */
-  --color-ink: #13223a;
-  --color-ink-muted: #51607a; /* 5.74:1 on --color-bg */
-  --color-ink-faint: #5c6b84; /* 4.87:1 on --color-bg */
+  /* Ink — near-black, not navy. */
+  --color-ink: #17181a;
+  --color-ink-muted: #5b6168; /* 6.4:1 on --color-bg */
+  --color-ink-faint: #6b7178; /* 5.3:1 on --color-bg */
 
-  /* Primary emphasis fill + accent - a rich navy blue, replacing the
-     earlier brass-on-dark-cover treatment now that the page is light. */
-  --color-navy: #1b3a6b; /* 10.17:1 text vs --color-bg */
-  --color-navy-deep: #122745; /* hover/active */
-  --color-on-navy: #f8f3e7; /* light ivory text on the navy fill */
+  /* Primary emphasis fill + accent — a deep leaf green, replacing navy as
+     the site's primary interactive color (buttons, focus rings, hover,
+     dividers, selection). */
+  --color-navy: #1f4a15; /* 10.26:1 text vs --color-bg */
+  --color-navy-deep: #163310; /* hover/active */
+  --color-on-navy: #ffffff;
 
-  /* Secondary accent - a lighter steel-blue, distinct from the primary
-     navy fill above. Replaces the earlier terracotta/rust tone entirely -
-     no red-family color remains anywhere in the public palette other than
-     the semantic --color-danger (kept red on purpose - that's a universal
-     safety convention, not a brand color, same reasoning that keeps
-     WhatsApp green fixed regardless of the rest of the palette). */
-  --color-brand-blue: #2d6ca6; /* 4.98:1 on --color-bg, 4.53:1 on --color-surface */
-  --color-brand-blue-soft: #e3edf6;
+  /* Secondary accent — a brighter, more vivid green for badges, eyebrow
+     labels, tags, and active nav state. Deliberately still ≥4.5:1 against
+     white so it stays usable as text, not just fill. */
+  --color-brand-blue: #34791e; /* 5.39:1 on --color-bg */
+  --color-brand-blue-soft: #e7f2df;
 
-  /* Fixed by brand commitment — WhatsApp actions only. Untouched by the
-     redesign: this stays the one recognizable "this really opens
-     WhatsApp" signal regardless of what the rest of the palette does. */
+  /* Fixed by brand commitment — WhatsApp actions only. Kept as WhatsApp's
+     own official green (not our accent green) so the "this opens
+     WhatsApp" signal stays a recognizable third-party mark, distinct from
+     the site's own decorative green. */
   --color-whatsapp: #25d366;
   --color-whatsapp-dark: #1ebd5a;
   --color-on-whatsapp: #0b1b33;
 
-  /* Ratings/badges/engraved plate accents — aged brass. */
+  /* Ratings/badges/engraved plate accents — aged brass. Currently unused
+     (no per-listing rating system on this site). */
   --color-gold: #a8823a;
 
   --color-danger: #b3261e; /* 5.90:1 on --color-bg */
   --color-danger-soft: #fdecec;
 
-  --color-hairline: rgba(19, 34, 58, 0.08);
-  --color-hairline-strong: rgba(19, 34, 58, 0.14);
+  --color-hairline: rgba(23, 24, 26, 0.08);
+  --color-hairline-strong: rgba(23, 24, 26, 0.14);
 
-  /* Motion — confident, decelerating. No bounce/spring anywhere; a
-     ledger's stamp press is a firm decisive motion, not a springy one. */
+  /* Motion — confident, decelerating. No bounce/spring anywhere. */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --dur-micro: 0.18s;
   --dur-base: 0.45s;
   --dur-slow: 0.7s;
 
-  /* A printed ledger page has square-ish corners, not soft app-UI
-     rounding — tightened from the previous 12/20px scale. */
-  --radius-inner: 4px;
-  --radius-outer: 8px;
+  /* A modern travel-card radius — softer than the ledger's square-ish
+     corners. */
+  --radius-inner: 6px;
+  --radius-outer: 10px;
 
   /* make-interfaces-feel-better's three-layer shadow recipe: a hairline,
      a close contact shadow, a soft ambient one, tinted from the ink. */
-  --shadow-card: 0 0 0 1px var(--color-hairline), 0 1px 2px -1px rgba(19, 34, 58, 0.06), 0 12px 28px -8px rgba(19, 34, 58, 0.14);
-  --shadow-card-hover: 0 0 0 1px var(--color-hairline-strong), 0 2px 4px -1px rgba(19, 34, 58, 0.08), 0 20px 40px -10px rgba(19, 34, 58, 0.2);
+  --shadow-card: 0 0 0 1px var(--color-hairline), 0 1px 2px -1px rgba(23, 24, 26, 0.06), 0 12px 28px -8px rgba(23, 24, 26, 0.14);
+  --shadow-card-hover: 0 0 0 1px var(--color-hairline-strong), 0 2px 4px -1px rgba(23, 24, 26, 0.08), 0 20px 40px -10px rgba(23, 24, 26, 0.2);
 }
 
 /* Scopes the admin panel back to its original light, functional palette -
@@ -123,7 +121,7 @@
   --color-hairline: var(--color-hairline);
   --color-hairline-strong: var(--color-hairline-strong);
 
-  --font-heading: var(--font-caslon);
+  --font-heading: var(--font-playfair);
   --font-body: var(--font-source-sans);
   --font-serif: var(--font-source-serif);
 }

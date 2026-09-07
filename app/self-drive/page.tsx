@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageBanner } from "@/components/PageBanner";
 import { Section } from "@/components/Section";
 import { ListingCard } from "@/components/ListingCard";
 import { ImageRevealGrid } from "@/components/ImageRevealGrid";
@@ -26,7 +27,13 @@ export default async function SelfDrivePage() {
 
   return (
     <>
-      <Section heading="A car for every kind of trip" subheading="Take the wheel yourself - every category below is self-drive.">
+      <PageBanner title="Self Drive" crumb="Self Drive" />
+
+      <Section
+        eyebrow="Self-drive rentals"
+        heading="A car for every kind of trip"
+        subheading="Take the wheel yourself - every category below is self-drive."
+      >
         {vehicles.length === 0 ? (
           <p className="text-base text-ink-muted">No vehicles listed yet - check back soon.</p>
         ) : (

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageBanner } from "@/components/PageBanner";
 import { Section } from "@/components/Section";
 import { ListingCard } from "@/components/ListingCard";
 import { RevealGrid } from "@/components/RevealGrid";
@@ -27,7 +28,10 @@ export default async function PackagesPage() {
 
   return (
     <>
+      <PageBanner title="Packages" crumb="Packages" />
+
       <Section
+        eyebrow="Vehicle + stay, one price"
         heading="A vehicle and a stay, bundled"
         subheading="Each package pairs a vehicle with a stay for a set trip length, priced as one - no adding up two separate bookings."
       >

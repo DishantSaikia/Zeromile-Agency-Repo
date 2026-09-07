@@ -1,10 +1,12 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { EASE_OUT } from "@/lib/motion";
+import { agencyConfig } from "@/lib/config";
 import { WhatsAppButton } from "./WhatsAppButton";
 import { MagneticWrapper } from "./MagneticWrapper";
 
@@ -23,10 +25,9 @@ export function Hero() {
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         const tl = gsap.timeline({ defaults: { ease: EASE_OUT } });
-        tl.from(".hero-media", { opacity: 0, scale: 1.06, duration: 1.1 })
-          .from(".hero-eyebrow", { opacity: 0, y: 14, duration: 0.5 }, 0.15)
-          .from(".hero-subtext", { opacity: 0, y: 16, duration: 0.55 }, 0.5)
-          .from(".hero-cta", { opacity: 0, y: 12, duration: 0.5 }, 0.62);
+        tl.from(".hero-media", { opacity: 0, scale: 1.06, duration: 1.2 })
+          .from(".hero-eyebrow", { opacity: 0, y: 14, duration: 0.5 }, 0.5)
+          .from(".hero-cta", { opacity: 0, y: 16, duration: 0.55 }, 0.85);
 
         let split: SplitText | null = null;
         if (headingRef.current) {
@@ -37,43 +38,24 @@ export function Hero() {
             onSplit(self) {
               return gsap.from(self.lines, {
                 yPercent: 110,
-                duration: 0.7,
+                duration: 0.8,
                 stagger: 0.08,
                 ease: EASE_OUT,
-                delay: 0.28,
+                delay: 0.55,
               });
             },
           });
         }
 
-        // Slow ambient drift on the background blobs - a continuous, symmetric
-        // wave (not an overshoot/bounce ease), so it reads as "alive" rather
-        // than as a discrete animated entrance.
-        gsap.to(".hero-blob-1", {
-          x: 30,
-          y: -20,
-          duration: 9,
-          ease: "sine.inOut",
-          repeat: -1,
-          yoyo: true,
-        });
-        gsap.to(".hero-blob-2", {
-          x: -24,
-          y: 24,
-          duration: 11,
-          ease: "sine.inOut",
-          repeat: -1,
-          yoyo: true,
-        });
-
         return () => split?.revert();
       });
 
       mm.add("(prefers-reduced-motion: reduce)", () => {
-        gsap.set(
-          [".hero-media", ".hero-eyebrow", ".hero-heading", ".hero-subtext", ".hero-cta"],
-          { opacity: 1, x: 0, y: 0, scale: 1 }
-        );
+        gsap.set([".hero-media", ".hero-eyebrow", ".hero-heading", ".hero-cta"], {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+        });
       });
 
       return () => mm.revert();
@@ -82,41 +64,50 @@ export function Hero() {
   );
 
   return (
-    <div
-      ref={rootRef}
-      className="relative overflow-hidden bg-bg pb-12 pt-20 lg:pb-20 lg:pt-32"
-    >
+    <div ref={rootRef} className="relative -mt-16 flex min-h-[85vh] items-center overflow-hidden lg:-mt-20 lg:min-h-[92vh]">
       <div className="hero-media absolute inset-0" aria-hidden="true">
-        <div
-          className="hero-blob-1 absolute -right-1/4 -top-1/3 h-[42rem] w-[42rem] rounded-full opacity-40 blur-3xl lg:-right-1/12"
-          style={{ background: "radial-gradient(circle, var(--color-brand-blue) 0%, transparent 70%)" }}
+        <Image
+          src="https://placehold.co/1920x1080/1a1a1a/1a1a1a.png"
+          alt=""
+          fill
+          priority
+          unoptimized
+          className="object-cover"
         />
+        {/* Placeholder background - swap for a real car/road/travel photo
+            (matching aspect ratio, ~1920x1080) when one is supplied. */}
         <div
-          className="hero-blob-2 absolute -bottom-1/3 -left-1/4 h-[34rem] w-[34rem] rounded-full opacity-25 blur-3xl"
-          style={{ background: "radial-gradient(circle, var(--color-navy) 0%, transparent 70%)" }}
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(15,20,15,0.55) 0%, rgba(15,20,15,0.45) 45%, rgba(15,20,15,0.75) 100%)",
+          }}
         />
-        <div className="grain-overlay" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="max-w-xl">
-          <p className="hero-eyebrow mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">
+      <div className="relative mx-auto flex w-full max-w-4xl flex-col items-center px-4 py-24 text-center sm:px-6 lg:px-8">
+        <p className="hero-eyebrow mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-white/85 [text-shadow:0_1px_10px_rgba(0,0,0,0.4)]">
+          {agencyConfig.tagline}
+        </p>
+        <h1
+          ref={headingRef}
+          className="hero-heading font-heading text-6xl font-extrabold leading-[1.32] tracking-tight text-white sm:text-7xl lg:text-8xl"
+        >
+          Zeromile Agency
+        </h1>
+
+        <div className="hero-cta mt-10 w-full max-w-md">
+          <MagneticWrapper>
+            <WhatsAppButton
+              variant="block"
+              message={HERO_MESSAGE}
+              label="Enquire on WhatsApp"
+              className="w-full py-4 text-base shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)]"
+            />
+          </MagneticWrapper>
+          <p className="mt-4 text-xs uppercase tracking-[0.2em] text-white/70 [text-shadow:0_1px_8px_rgba(0,0,0,0.4)]">
             Car Rentals · Commercial Vehicles · Stays · Full Packages
           </p>
-          <h1
-            ref={headingRef}
-            className="hero-heading font-heading text-5xl font-semibold leading-[1.25] tracking-tighter text-ink sm:text-7xl lg:text-8xl"
-          >
-            Every trip starts at zero.
-          </h1>
-          <p className="hero-subtext mt-6 max-w-md text-base leading-relaxed text-ink-muted lg:text-lg">
-            Car Rentals, Commercial Vehicles, and Stays: book any of it in one WhatsApp message.
-          </p>
-          <div className="hero-cta mt-8">
-            <MagneticWrapper>
-              <WhatsAppButton variant="block" message={HERO_MESSAGE} label="Enquire on WhatsApp" />
-            </MagneticWrapper>
-          </div>
         </div>
       </div>
     </div>

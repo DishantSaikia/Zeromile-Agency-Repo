@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Every ScrollTrigger (RevealGrid, RouteLine) caches its start/end scroll
+ * Every ScrollTrigger (RevealGrid, ImageRevealGrid) caches its start/end scroll
  * positions from layout at creation time - before custom web fonts swap in
  * (next/font uses display: swap) and before below-the-fold images finish
  * loading. Either can reflow the page afterward, leaving those cached
