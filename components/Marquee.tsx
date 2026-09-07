@@ -14,8 +14,8 @@ const ITEMS = [
 export function Marquee() {
   const row = (
     <div className="marquee-track">
-      {[0, 1].map((copy) => (
-        <div key={copy} className="marquee-group" aria-hidden={copy === 1}>
+      {[0, 1, 2, 3].map((copy) => (
+        <div key={copy} className="marquee-group" aria-hidden={copy !== 0}>
           {ITEMS.map((item) => (
             <span key={item} className="flex items-center whitespace-nowrap">
               <span className="text-xs font-semibold uppercase tracking-[0.25em] text-ink-muted">

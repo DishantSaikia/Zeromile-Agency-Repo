@@ -7,7 +7,6 @@ import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { EASE_OUT } from "@/lib/motion";
 import { agencyConfig } from "@/lib/config";
-import { Button } from "./Button";
 import { MagneticWrapper } from "./MagneticWrapper";
 
 gsap.registerPlugin(useGSAP, SplitText);
@@ -95,12 +94,12 @@ export function Hero() {
 
         <div className="hero-cta mt-10 w-full max-w-md">
           <MagneticWrapper>
-            <Button
+            <a
               href="#services"
-              className="w-full py-4 text-base shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)]"
+              className="inline-flex min-h-14 w-full items-center justify-center rounded-[var(--radius-inner)] bg-whatsapp px-8 py-4 text-base font-medium tracking-tight text-on-whatsapp shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] transition-colors duration-[var(--dur-micro)] ease-[var(--ease-out)] hover:bg-whatsapp-dark active:scale-[0.96] active:bg-whatsapp-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-whatsapp-dark focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
             >
               Browse services
-            </Button>
+            </a>
           </MagneticWrapper>
           <p className="mt-4 text-xs uppercase tracking-[0.2em] text-white/70 [text-shadow:0_1px_8px_rgba(0,0,0,0.4)]">
             Car Rentals · Commercial Vehicles · Stays · Full Packages

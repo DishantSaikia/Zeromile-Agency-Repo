@@ -24,7 +24,7 @@ import { ImageRevealGrid } from "@/components/ImageRevealGrid";
 import { Testimonials } from "@/components/Testimonials";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { MagneticWrapper } from "@/components/MagneticWrapper";
-import { CarIcon, HomeIcon, TruckIcon } from "@/components/icons";
+import { CarIcon, HomeIcon, PackageIcon, TruckIcon } from "@/components/icons";
 import { getCategoryThumbnails } from "@/lib/data/category-thumbnails";
 import { getTestimonials } from "@/lib/data/testimonials";
 import type { CategoryThumbnailKey } from "@/lib/data/types";
@@ -54,6 +54,14 @@ const SERVICES = [
     placeholderIcon: HomeIcon,
     thumbnailKey: "stays" as CategoryThumbnailKey,
   },
+  {
+    title: "Packages",
+    description:
+      "Vehicle and stay bundles for weekend trips, hill escapes, and family getaways, priced together.",
+    href: "/packages",
+    placeholderIcon: PackageIcon,
+    thumbnailKey: "packages" as CategoryThumbnailKey,
+  },
 ];
 
 export default async function Home() {
@@ -70,9 +78,9 @@ export default async function Home() {
         id="services"
         className="scroll-mt-16 lg:scroll-mt-20"
         eyebrow="What we offer"
-        heading="Three services."
+        heading="Four services."
       >
-        <ImageRevealGrid className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ImageRevealGrid className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {SERVICES.map((service) => {
             const { thumbnailKey, ...cardProps } = service;
             const thumbnail = thumbnailByKey.get(thumbnailKey);
