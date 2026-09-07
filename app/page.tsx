@@ -66,7 +66,12 @@ export default async function Home() {
 
       <Marquee />
 
-      <Section eyebrow="What we offer" heading="Three services.">
+      <Section
+        id="services"
+        className="scroll-mt-16 lg:scroll-mt-20"
+        eyebrow="What we offer"
+        heading="Three services."
+      >
         <ImageRevealGrid className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((service) => {
             const { thumbnailKey, ...cardProps } = service;

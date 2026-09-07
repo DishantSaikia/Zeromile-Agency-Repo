@@ -7,13 +7,10 @@ import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { EASE_OUT } from "@/lib/motion";
 import { agencyConfig } from "@/lib/config";
-import { WhatsAppButton } from "./WhatsAppButton";
+import { Button } from "./Button";
 import { MagneticWrapper } from "./MagneticWrapper";
 
 gsap.registerPlugin(useGSAP, SplitText);
-
-const HERO_MESSAGE =
-  "Hi Zeromile Agency! I'd like to enquire about a car, fleet, or stay booking.";
 
 export function Hero() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -98,12 +95,12 @@ export function Hero() {
 
         <div className="hero-cta mt-10 w-full max-w-md">
           <MagneticWrapper>
-            <WhatsAppButton
-              variant="block"
-              message={HERO_MESSAGE}
-              label="Enquire on WhatsApp"
+            <Button
+              href="#services"
               className="w-full py-4 text-base shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)]"
-            />
+            >
+              Browse services
+            </Button>
           </MagneticWrapper>
           <p className="mt-4 text-xs uppercase tracking-[0.2em] text-white/70 [text-shadow:0_1px_8px_rgba(0,0,0,0.4)]">
             Car Rentals · Commercial Vehicles · Stays · Full Packages
