@@ -81,7 +81,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-4xl flex-col items-center px-4 py-24 text-center sm:px-6 lg:px-8">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center px-4 py-24 text-center sm:px-6 lg:px-8">
         <p className="hero-eyebrow mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-white/85 [text-shadow:0_1px_10px_rgba(0,0,0,0.4)]">
           {agencyConfig.tagline}
         </p>
@@ -92,11 +92,11 @@ export function Hero() {
           Zeromile Agency
         </h1>
 
-        <div className="hero-cta mt-10 w-full max-w-md">
+        <div className="hero-cta mt-10 w-full max-w-[68.8rem]">
           <MagneticWrapper>
             <a
               href="#services"
-              className="inline-flex min-h-14 w-full items-center justify-center rounded-[var(--radius-inner)] bg-whatsapp px-8 py-4 text-base font-medium tracking-tight text-on-whatsapp shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] transition-colors duration-[var(--dur-micro)] ease-[var(--ease-out)] hover:bg-whatsapp-dark active:scale-[0.96] active:bg-whatsapp-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-whatsapp-dark focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+              className="-mt-[0.7rem] inline-flex min-h-[4.2rem] w-full items-center justify-center rounded-[var(--radius-inner)] bg-whatsapp px-8 py-4 text-[1.2rem] font-medium tracking-tight text-on-whatsapp shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] transition-colors duration-[var(--dur-micro)] ease-[var(--ease-out)] hover:bg-whatsapp-dark active:scale-[0.96] active:bg-whatsapp-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-whatsapp-dark focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
             >
               Browse services
             </a>
